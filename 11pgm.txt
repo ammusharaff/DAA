@@ -1,0 +1,208 @@
+
+11.a. Write Java programs to Implement All-Pairs Shortest Paths problem using Floyd's algorithm. 
+   b.Find transitive closure of a given graph using Warshalls Algorithm.
+
+a.	
+import java.util.*;
+class floyd
+{
+ 	int a[][]=new int[10][10];
+int d[][][]=new int[10][10][10];
+int n;
+void read()
+{
+ 		int i,j;
+ 		Scanner scan=new Scanner(System.in);
+ 		System.out.println("Enter the number of vertices\n");
+ 		n=scan.nextInt();
+ 		System.out.println("Enter the adjacency matrix\n");
+ 		for(i=1;i<=n;i++)
+  			for(j=1;j<=n;j++)
+   				a[i][j]=scan.nextInt();
+}
+void write()
+{
+ 		int i,j;
+ 		System.out.println("Computing all pairs shortest path\n");
+ 		for(int k=0;k<=n;k++)
+ 		{
+  			System.out.println("d["+k+"]<<=<<\n");
+ 		 	for(i=1;i<=n;i++)
+  			{
+   				for(j=1;j<=n;j++)
+  				{	
+System.out.print(d[k][i][j]+"\t");
+ 			 	}
+  				System.out.print("\n");
+  			}
+ 		}
+}
+void floyds()
+{
+ 		int i,j,k;
+  		for(i=1;i<=n;i++)
+ 		{
+ 		 	for(j=1;j<=n;j++)
+  			{
+   				d[0][i][j]=a[i][j];
+ 		 	}
+ 		}
+ 		for(k=1;k<=n;k++)
+ 		{
+ 	 		for(i=1;i<=n;i++)
+  			{
+   				for(j=1;j<=n;j++)
+   				{
+d[k][i][j]=min(d[k-1][i][j],(d[k-1][i][k]+d[k-1][k][j]));
+  		 		}
+ 	 		}
+ 		}
+}
+int min(int a,int b)
+{
+ 		if(a<b)
+ 	 		return a;
+ 		else
+  			return b;
+}
+}
+public class FloydDemo 
+{
+public static void main(String arg[])
+{
+ 		floyd f=new floyd();;
+ 		f.read();
+ 		f.floyds();
+ 		f.write();
+}
+}
+______________________________Output____________________________
+
+Enter the number of vertices
+
+4
+Enter the adjacency matrix
+
+0 1 2 999
+1 0 999 3
+2 999 0 4
+999 3 4 0
+Computing all pairs shortest path
+
+d[0]<<=<<
+
+0	1	2	999	
+1	0	999	3	
+2	999	0	4	
+999	3	4	0	
+d[1]<<=<<
+
+0	1	2	999	
+1	0	3	3	
+2	3	0	4	
+999	3	4	0	
+d[2]<<=<<
+
+0	1	2	4	
+1	0	3	3	
+2	3	0	4	
+4	3	4	0	
+d[3]<<=<<
+
+0	1	2	4	
+1	0	3	3	
+2	3	0	4	
+4	3	4	0	
+d[4]<<=<<
+
+0	1	2	4	
+1	0	3	3	
+2	3	0	4	
+4	3	4	0	
+
+
+
+11.b
+
+
+public class warshalls
+
+{
+    final static int V = 4; //Number of vertices in a graph
+         void transitiveClosure(int graph[][])
+    {
+        
+        int reach[][] = new int[V][V];
+        int  i, j, k;
+ 
+       
+        for (i = 0; i < V; i++)
+            for (j = 0; j < V; j++)
+                reach[i][j] = graph[i][j];
+ 
+        
+        for (k = 0; k < V; k++)
+        {
+            
+            for (i = 0; i < V; i++)
+            {
+                
+                for (j = 0; j < V; j++)
+                {
+                    
+                    reach[i][j] = (reach[i][j]!=0) ||
+                             ((reach[i][k]!=0) && (reach[k][j]!=0))?1:0;
+                }
+            }
+        }
+ 
+       printSolution(reach);
+    }
+ 
+  
+    void printSolution(int reach[][])
+    {
+        System.out.println("Following matrix is transitive closure"+
+                           " of the given graph");
+        for (int i = 0; i < V; i++)
+        {
+            for (int j = 0; j < V; j++) {
+                
+                  System.out.print(reach[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+ 
+      public static void main (String[] args)
+    {
+        
+               int graph[][] = new int[][]{ {0, 1, 0, 0},
+                                      {0, 0, 0, 1},
+                                      {0, 0, 0, 0},
+                                      {1, 0, 1, 0}
+                                    };
+ 
+         
+         warshalls g = new warshalls();
+         g.transitiveClosure(graph);
+    }
+}
+
+______________________________Output____________________________
+Following matrix is transitive closure of the given graph
+1 1 1 1 
+1 1 1 1 
+0 0 1 0 
+1 1 1 1 
+
+
+
+
+
+
+
+
+
+
+

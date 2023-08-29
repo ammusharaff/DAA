@@ -1,0 +1,108 @@
+9. Find Minimum Cost Spanning Tree of a given connected undirected graph using Kruskal's algorithm. Use Union-Find algorithms in your program.
+
+
+import java.util.*;
+class Kruskal
+{
+int n,c[][],st[][],par[];
+	void read()
+	{
+		Scanner scr=new Scanner(System.in);
+		System.out.println("enter the no of vertices");
+		n=scr.nextInt();
+		c=new int[n+1][n+1];
+		par=new int[n+1];
+		System.out.println("enter the cost adjacency matrix");
+for(int i=1;i<=n;i++)
+			for(int j=1;j<=n;j++)
+				c[i][j]=scr.nextInt();
+			for(int i=1;i<=n;i++)
+				par[i]=i;
+	}
+	int find(int i)
+	{
+		i=par[i];
+		return i;
+	}
+	void algo()
+	{
+		int mincost=0,e=0,min,u=0,v=0,a,b;
+		st=new int[n+1][n+1];
+		for(int i=1;i<=n;i++)
+			for(int j=1;j<=n;j++)
+				st[i][j]=c[i][j];
+				System.out.println("min cost spanning tree is:");
+				while(e!=n-1)
+				{
+					min=999;
+					for(int i=1;i<=n;i++)
+						for(int j=1;j<=n;j++)
+							if(min>st[i][j])
+							{
+								min=st[i][j];
+								u=i;
+								v=j;
+							}
+							System.out.println(u+"->"+v);
+							st[u][v]=999;
+							a=find(u);
+							b=find(v);
+						if(a!=b)
+{
+							e++;
+							System.out.print(e+":");
+System.out.println(u+" >"+v+"cost:"+min);
+							unions(a,b);
+							mincost=mincost+min;
+						}
+						else
+System.out.println(u+"->"+v+"rejected:forms a cycle");
+				}
+System.out.println("cost of spanning tree"+mincost);
+}
+	void unions(int i,int j)
+	{
+		par[j]=i;
+	}
+}
+public class KruskalDemo 
+{
+public static void main(String[] args) 
+{
+		Kruskal k=new Kruskal();
+		k.read();
+		k.algo();
+
+	}
+}
+______________________________Output_________________________________
+
+
+
+enter the no of vertices
+4
+enter the cost adjacency matrix
+0 10 999 40
+10 0 20 999
+999 20 0 30
+40 999 30 0
+min cost spanning tree is:
+1->1
+1->1rejected:forms a cycle
+2->2
+2->2rejected:forms a cycle
+3->3
+3->3rejected:forms a cycle
+4->4
+4->4rejected:forms a cycle
+1->2
+1:1->2cost:10
+2->1
+2->1rejected:forms a cycle
+2->3
+2:2->3cost:20
+3->2
+3->2rejected:forms a cycle
+3->4
+3:3->4cost:30
+cost of spanning tree60
