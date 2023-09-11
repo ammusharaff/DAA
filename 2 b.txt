@@ -1,0 +1,77 @@
+package Adnan;
+
+import java.util.Scanner;
+
+import java.util.StringTokenizer;
+
+
+class Customer
+
+{
+	
+String cname,dob;
+	
+Scanner sobj = new Scanner(System.in);
+	v
+oid read()
+	
+{
+		
+System.out.println("Enter customer name: ");
+		
+cname = sobj.next();
+		
+System.out.println("enter customer DOB in the format dd/mm/yyyy");
+		
+dob=sobj.next();
+	
+}
+	
+	
+void display()
+	
+{
+		
+StringTokenizer st = new StringTokenizer(dob,"/");
+	
+System.out.println(cname+",");
+		
+while(st.hasMoreTokens())
+		
+{
+			
+String val = st.nextToken();
+			
+System.out.print(val);
+			
+if(st.countTokens()!=6)
+				
+System.out.print(","+" ");
+		
+}
+	
+}
+
+}
+
+
+public class Sttoken
+ {
+
+	
+public static void main(String[] args)
+ {
+		
+Customer cobj = new Customer();
+		
+cobj.read();
+		
+System.out.println("customer Details");
+		
+System.out.println("-----------");
+		
+cobj.display();
+
+}
+
+}

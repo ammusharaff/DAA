@@ -1,0 +1,202 @@
+package Adnan;
+
+import java.util.Scanner;
+
+
+class Staff
+{
+	
+String sid,name,ph;
+	
+float sal;
+	
+	
+void getdetails()
+ {
+		
+Scanner s = new Scanner(System.in);
+		
+System.out.println("Enter Id");
+		
+sid=s.next();
+		
+System.out.println("Enter name");
+		
+name=s.next();
+		
+System.out.println("Enter phone number");
+		
+ph=s.next();
+		
+System.out.println("Enter salary");
+		
+sal=s.nextFloat();
+	
+}
+	
+	
+void putdetails()
+	
+{
+		
+System.out.println("-----STAFF DETAILS ARE-----");
+		
+System.out.println("staff id is :"+sid);
+		
+System.out.println("staff name is: "+name);
+		
+System.out.println("staff phone number is: "+ph);
+		
+System.out.println("staff salary is: "+sal);
+	
+}
+
+}
+
+//class 1
+class Teaching extends Staff
+
+{
+	
+String dom,pub;
+	Teaching()
+	
+{
+		
+getdetails();
+		
+Scanner s = new Scanner(System.in);
+		
+System.out.println("Enter domain");
+		
+dom=s.next();
+		
+System.out.println("Enter publications");
+		
+pub=s.next();
+	
+}
+	
+	
+void dispTeach()
+	
+{
+		
+putdetails();
+		
+System.out.println("staff Domain : "+dom);
+		
+System.out.println("staff has published  : "+pub);
+	
+}
+	
+}
+
+//class 2
+
+
+class Technical extends Staff
+
+{
+	
+String skills;
+	
+Technical()
+	
+{
+		
+getdetails();
+		
+Scanner s = new Scanner(System.in);
+		
+System.out.println("enter the skills");
+		
+skills = s.next();
+	
+}
+	
+	
+void dispTech()
+
+{
+		
+  putdetails();
+		
+System.out.println("skills of the staff : "+skills);
+	
+}
+
+}
+
+//class 3
+
+
+class Contract extends Staff
+
+{
+	
+int period;
+	
+Contract()
+	
+{
+		
+getdetails();
+		
+Scanner s = new Scanner(System.in);
+		
+System.out.println("enter contract period in years");
+		
+period = s.nextInt();
+	
+}
+	
+	
+void dispContract()
+	
+{
+		
+putdetails();
+		
+System.out.println("staff contract period is "+period +"years");
+	
+}
+
+}
+
+
+public class Demo 
+{
+
+	
+public static void main(String[] args)
+ {
+		
+	
+System.out.println("enter the details of teaching staff ");
+	
+Teaching t1 = new Teaching();
+	
+System.out.println("enter the details of technical staff ");
+	
+Technical t2 = new Technical();
+
+System.out.println("enter the details of contract based staff");
+	
+Contract c = new Contract();
+	
+System.out.println("Teaching staff");
+	
+t1.dispTeach();
+	
+System.out.println("Technical staff");
+	
+t2.dispTech();
+	
+System.out.println("contract based staff");
+	
+c.dispContract();
+	
+}
+
+}
